@@ -2,7 +2,7 @@ import ApplicationWrapper from '../ApplicationWrapper';
 import { FiSmile } from 'react-icons/fi';
 import Kush from '../../assets/Kush.jpeg';
 import MIT from '../../assets/MIT.png';
-import AppStore from '../../assets/AppStore.png';
+import AppStore from '../../assets/appstore.png';
 import ChatBar from './ChatBar';
 import './index.css';
 import Text from './Text';
