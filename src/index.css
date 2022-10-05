@@ -7,6 +7,11 @@
   --h-dock: 4rem;
 }
 
+body {
+  font-family: '-apple-system', '-apple-system', 'BlinkMacSystemFont', 'Inter',
+    sans-serif;
+}
+
 .bg-img-ventura {
   background-image: url('./assets/monterey.jpeg');
   background-size: cover;

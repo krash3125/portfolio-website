@@ -13,7 +13,9 @@ const WindowManagerProvider = ({ children }) => {
   const [windows, setWindows] = useState([]);
 
   const openWindow = (windowIndex) => {
-    setWindows([...windows, windowIndex]);
+    if (windows.indexOf(windowIndex) === -1) {
+      setWindows([...windows, windowIndex]);
+    }
   };
 
   const closeWindow = (windowIndex) => {

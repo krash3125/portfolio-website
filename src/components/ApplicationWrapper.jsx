@@ -16,7 +16,10 @@ const ApplicationControls = ({ index }) => {
       >
         <FiX className="control-icons hidden" size={9} strokeWidth={2.5} />
       </div>
-      <div className="flex h-3 w-3 items-center justify-center rounded-full bg-apple-yellow hover:cursor-pointer">
+      <div
+        className="flex h-3 w-3 items-center justify-center rounded-full bg-apple-yellow hover:cursor-pointer"
+        onClick={() => closeWindow(index)}
+      >
         <FiMinus className="control-icons hidden" size={9} strokeWidth={2.5} />
       </div>
       <div className="flex h-3 w-3 items-center justify-center rounded-full bg-apple-green hover:cursor-pointer">

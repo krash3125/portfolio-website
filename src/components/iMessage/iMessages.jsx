@@ -6,7 +6,7 @@ import AppStore from '../../assets/appstore.png';
 import ChatBar from './ChatBar';
 import './index.css';
 import Text from './Text';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useEffect } from 'react';
 
 const ChatList = () => {
@@ -33,13 +33,15 @@ const Chat = () => {
   const [messages, setMessages] = useState([
     { text: 'Send a message here to get in touch!', blue: false },
   ]);
-  const [messageSent, setMessageSent] = useState(false);
+  const [formSent, setFormSent] = useState(false);
 
   const [formData, setFormData] = useState({
     name: null,
     email: null,
     message: null,
   });
+
+  const formRef = useRef(null);
 
   useEffect(() => {
     if (!formData.name) {
@@ -82,22 +84,22 @@ const Chat = () => {
           email: null,
           message: null,
         });
+        setFormSent(false);
       } else if (!formData.name) {
         setFormData({ ...formData, name: input });
       } else if (!formData.email) {
         setFormData({ ...formData, email: input });
       } else if (!formData.message) {
         setFormData({ ...formData, message: input });
-      } else if (input === 'CONFIRM') {
-        console.log('send message');
-        console.log(formData);
+      } else if (input === 'CONFIRM' && !formSent) {
+        formRef.current.submit();
         setMessages([
           ...messages,
           { text: 'Your message was successfully sent!', blue: false },
         ]);
-        setMessageSent(true);
+        setFormSent(true);
       } else {
-        if (!messageSent) {
+        if (!formSent) {
           setMessages([
             ...messages,
             {
@@ -113,33 +115,68 @@ const Chat = () => {
   };
 
   return (
-    <div className="chat-view-blur flex h-full w-2/3 min-w-[400px] flex-col bg-white">
-      <div className="z-30 flex h-10 flex-row items-center bg-[#F7F7F7] px-4 text-sm">
-        <a className="mr-1 text-apple-grey-text">To: </a> Kush
+    <>
+      <div className="chat-view-blur flex h-full w-2/3 min-w-[400px] flex-col bg-white">
+        <div className="z-30 flex h-10 flex-row items-center bg-[#F7F7F7] px-4 text-sm">
+          <a className="mr-1 text-apple-grey-text">To: </a> Kush
+        </div>
+        <div className="m-2 mt-auto flex flex-col gap-1 overflow-y-auto overflow-x-hidden">
+          {messages &&
+            messages?.map((message, index) => (
+              <div
+                key={index + 'message'}
+                className={`${message.blue ? 'ml-auto' : ''}`}
+              >
+                <Text message={message.text} blue={message.blue} />
+              </div>
+            ))}
+        </div>
+        <div className="mx-4 my-4 flex flex-row gap-4">
+          <img src={AppStore} className="my-auto h-6" />
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="iMessage"
+            className="mx-auto h-7 w-5/6 rounded-full border border-apple-grey-text px-3 text-sm font-light  focus:outline-0"
+          />
+          <FiSmile className="my-auto" color="#999999" size={24} />
+        </div>
       </div>
-      <div className="m-2 mt-auto flex flex-col gap-1 overflow-y-auto overflow-x-hidden">
-        {messages &&
-          messages?.map((message, index) => (
-            <div
-              key={index + 'message'}
-              className={`${message.blue ? 'ml-auto' : ''}`}
-            >
-              <Text message={message.text} blue={message.blue} />
-            </div>
-          ))}
-      </div>
-      <div className="mx-4 my-4 flex flex-row gap-4">
-        <img src={AppStore} className="my-auto h-6" />
+      <form
+        ref={formRef}
+        action="https://api.web3forms.com/submit"
+        method="POST"
+        target="_blank"
+        hidden
+      >
         <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder="iMessage"
-          className="mx-auto h-7 w-5/6 rounded-full border border-apple-grey-text px-3 text-sm font-light  focus:outline-0"
+          type="hidden"
+          name="access_key"
+          value="3732c0fa-fdeb-4222-95b3-e07a7ead911e"
         />
-        <FiSmile className="my-auto" color="#999999" size={24} />
-      </div>
-    </div>
+        <input type="text" name="name" value={formData.name} required hidden />
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          required
+          hidden
+        />
+        <textarea
+          name="message"
+          value={formData.message}
+          required
+          hidden
+        ></textarea>
+        <input
+          type="hidden"
+          name="redirect"
+          value="https://web3forms.com/success"
+          target="_blank"
+        />
+      </form>
+    </>
   );
 };
 
