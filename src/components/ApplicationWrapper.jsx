@@ -31,14 +31,14 @@ const ApplicationWrapper = ({ title, children, constraintsRef }) => {
 
   return (
     <DragableDiv
-      className="h-[500px] w-[700px] overflow-hidden rounded-md bg-[#C4C4C4] "
+      className="application-min-size h-fit w-fit overflow-hidden rounded-md bg-[#C4C4C4] "
       constraintsRef={constraintsRef}
       dragControls={dragControls}
       dragListener={false}
     >
       <div className="flex flex-col">
         <ApplicationBar title={title} dragControls={dragControls} />
-        <div className="h-64 w-64">{children}</div>
+        {children}
       </div>
     </DragableDiv>
   );
