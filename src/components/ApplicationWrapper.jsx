@@ -3,18 +3,25 @@ import DragableDiv from './DragableDiv';
 import React from 'react';
 import { useContext } from 'react';
 import { WindowManagerContext } from '../context/WindowManager';
+import { FiX, FiMinus, FiPlus } from 'react-icons/fi';
 
 const ApplicationControls = ({ index }) => {
   const { closeWindow } = useContext(WindowManagerContext);
 
   return (
-    <div className="absolute flex gap-2">
+    <div className="application-controls absolute flex gap-2">
       <div
-        className="h-3 w-3 rounded-full bg-apple-red"
+        className="flex h-3 w-3 items-center justify-center rounded-full bg-apple-red hover:cursor-pointer"
         onClick={() => closeWindow(index)}
-      />
-      <div className="h-3 w-3 rounded-full bg-apple-yellow" />
-      <div className="h-3 w-3 rounded-full bg-apple-green" />
+      >
+        <FiX className="control-icons hidden" size={9} strokeWidth={2.5} />
+      </div>
+      <div className="flex h-3 w-3 items-center justify-center rounded-full bg-apple-yellow hover:cursor-pointer">
+        <FiMinus className="control-icons hidden" size={9} strokeWidth={2.5} />
+      </div>
+      <div className="flex h-3 w-3 items-center justify-center rounded-full bg-apple-green hover:cursor-pointer">
+        <FiPlus className="control-icons hidden" size={9} strokeWidth={2.5} />
+      </div>
     </div>
   );
 };
@@ -38,7 +45,7 @@ const ApplicationWrapper = ({ index, title, children, constraintsRef }) => {
 
   return (
     <DragableDiv
-      className="application-min-size h-fit w-fit overflow-hidden rounded-md bg-[#C4C4C4] "
+      className="application-min-size h-fit w-fit overflow-hidden rounded-md bg-[#C4C4C4]"
       constraintsRef={constraintsRef}
       dragControls={dragControls}
       dragListener={false}
