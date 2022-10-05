@@ -1,13 +1,20 @@
-import { motion } from 'framer-motion';
+import { motion, useDragControls } from 'framer-motion';
 import React from 'react';
 
 type Props = {
+  controls?: any;
   className?: string;
+  style?: React.CSSProperties;
   children?: JSX.Element;
   constraintsRef: React.RefObject<HTMLDivElement>;
 };
 
-const DragableDiv = ({ className, children, constraintsRef }: Props) => {
+const DragableDiv = ({
+  controls,
+  className,
+  children,
+  constraintsRef,
+}: Props) => {
   return (
     <motion.div
       className={className}

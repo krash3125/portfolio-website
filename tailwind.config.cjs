@@ -5,6 +5,9 @@ module.exports = {
     extend: {
       colors: {
         clear: '#ffffff3c',
+        'apple-green': '#28C840',
+        'apple-yellow': '#FDBC2E',
+        'apple-red': '#FD5E58',
       },
     },
   },
