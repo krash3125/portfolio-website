@@ -11,7 +11,7 @@ const VSCode = ({ constraintsRef }) => {
       <div className="h-[600px] w-[900px]">
         <iframe
           className="noselect h-full w-full"
-          src="https://github1s.com/krash3125/portfolio-website/blob/main/readme.md"
+          src="https://github1s.com/krash3125/portfolio-website/blob/main/README.md"
         />
       </div>
     </ApplicationWrapper>
