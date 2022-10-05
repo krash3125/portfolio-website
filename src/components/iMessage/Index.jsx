@@ -30,7 +30,7 @@ const ChatList = () => {
 const Chat = () => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([
-    { text: 'Want to send me a message?', blue: false },
+    { text: 'Here is a way to contact me.', blue: false },
     { text: 'Send a message here to get in touch!', blue: false },
   ]);
 
