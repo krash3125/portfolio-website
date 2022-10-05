@@ -33,6 +33,7 @@ const Chat = () => {
   const [messages, setMessages] = useState([
     { text: 'Send a message here to get in touch!', blue: false },
   ]);
+  const [messageSent, setMessageSent] = useState(false);
 
   const [formData, setFormData] = useState({
     name: null,
@@ -94,14 +95,17 @@ const Chat = () => {
           ...messages,
           { text: 'Your message was successfully sent!', blue: false },
         ]);
+        setMessageSent(true);
       } else {
-        setMessages([
-          ...messages,
-          {
-            text: `Send Message? Name: ${formData.name} Email: ${formData.email} Message: ${formData.message} (Type CONFIRM to send.) `,
-            blue: false,
-          },
-        ]);
+        if (!messageSent) {
+          setMessages([
+            ...messages,
+            {
+              text: `Send Message? Name: ${formData.name} Email: ${formData.email} Message: ${formData.message} (Type CONFIRM to send.) `,
+              blue: false,
+            },
+          ]);
+        }
       }
 
       setInput('');
@@ -113,7 +117,7 @@ const Chat = () => {
       <div className="z-30 flex h-10 flex-row items-center bg-[#F7F7F7] px-4 text-sm">
         <a className="mr-1 text-apple-grey-text">To: </a> Kush
       </div>
-      <div className="m-2 mt-auto flex flex-col gap-1 overflow-y-auto">
+      <div className="m-2 mt-auto flex flex-col gap-1 overflow-y-auto overflow-x-hidden">
         {messages &&
           messages?.map((message, index) => (
             <div
