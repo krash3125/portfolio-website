@@ -1,6 +1,6 @@
 import Dock from './components/Dock';
 import DragableArea from './components/DragableArea';
-import MenuBar from './components/MenuBar';
+import MenuBar from './components/MenuBar.jsx';
 
 const App = () => {
   return (

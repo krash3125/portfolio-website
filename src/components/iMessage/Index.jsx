@@ -1,14 +1,10 @@
-import ApplicationWrapper from './ApplicationWrapper';
+import ApplicationWrapper from '../ApplicationWrapper';
 import DragableDiv from '../DragableDiv';
 import './index.css';
 
-type Props = {
-  constraintsRef: React.RefObject<HTMLDivElement>;
-};
-
-const Index = ({ constraintsRef }: Props) => {
+const Index = ({ constraintsRef }) => {
   return (
-    <ApplicationWrapper title="iMessage">
+    <ApplicationWrapper title="iMessage" constraintsRef={constraintsRef}>
       {/* <div className="flex h-full flex-row">
           <div className="chat-view-blur h-full w-1/3 min-w-[300px] border-r border-[#C4C4C4]" />
           <div className="chat-view-blur h-full w-2/3 min-w-[400px]" />

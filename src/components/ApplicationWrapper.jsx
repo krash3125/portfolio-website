@@ -1,4 +1,5 @@
 import { motion, MotionConfig, useDragControls } from 'framer-motion';
+import DragableDiv from './DragableDiv';
 import React from 'react';
 
 const ApplicationControls = () => {
@@ -11,7 +12,7 @@ const ApplicationControls = () => {
   );
 };
 
-const ApplicationBar = ({ title, controls }) => {
+const ApplicationBar = ({ title, dragControls }) => {
   return (
     <div
       className="z-50 flex h-7 items-center bg-white"
@@ -25,17 +26,18 @@ const ApplicationBar = ({ title, controls }) => {
   );
 };
 
-const ApplicationWrapper = ({ title, children }) => {
-  const controls = useDragControls();
+const ApplicationWrapper = ({ title, children, constraintsRef }) => {
+  const dragControls = useDragControls();
 
   return (
     <DragableDiv
       className="h-[500px] w-[700px] overflow-hidden rounded-md bg-[#C4C4C4] "
       constraintsRef={constraintsRef}
-      controls={controls}
+      dragControls={dragControls}
+      dragListener={false}
     >
       <div className="flex flex-col">
-        <ApplicationBar title={title} controls={controls} />
+        <ApplicationBar title={title} dragControls={dragControls} />
         <div className="h-64 w-64">{children}</div>
       </div>
     </DragableDiv>

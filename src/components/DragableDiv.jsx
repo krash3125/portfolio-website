@@ -1,20 +1,13 @@
 import { motion, useDragControls } from 'framer-motion';
 import React from 'react';
 
-type Props = {
-  controls?: any;
-  className?: string;
-  style?: React.CSSProperties;
-  children?: JSX.Element;
-  constraintsRef: React.RefObject<HTMLDivElement>;
-};
-
 const DragableDiv = ({
-  controls,
+  dragControls,
+  dragListener,
   className,
   children,
   constraintsRef,
-}: Props) => {
+}) => {
   return (
     <motion.div
       className={className}
@@ -23,6 +16,8 @@ const DragableDiv = ({
       dragMomentum={false}
       dragSnapToOrigin={false}
       dragConstraints={constraintsRef}
+      dragControls={dragControls}
+      dragListener={dragListener}
     >
       {children}
     </motion.div>

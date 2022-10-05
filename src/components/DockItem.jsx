@@ -1,10 +1,6 @@
 import { motion } from 'framer-motion';
 
-type Props = {
-  src?: any;
-};
-
-const DockItem = ({ src }: Props) => {
+const DockItem = ({ src }) => {
   return (
     <motion.img
       className="hover:cursor-pointer"
