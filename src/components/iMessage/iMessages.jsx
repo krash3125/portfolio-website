@@ -1,5 +1,6 @@
 import ApplicationWrapper from '../ApplicationWrapper';
-import { FiSmile } from 'react-icons/fi';
+import { FiSearch, FiSmile } from 'react-icons/fi';
+import { AiOutlineSearch } from 'react-icons/ai';
 import Kush from '../../assets/Kush.jpeg';
 import MIT from '../../assets/MIT.png';
 import AppStore from '../../assets/appstore.png';
@@ -14,7 +15,8 @@ const ChatList = () => {
     <div className="chat-view-blur h-full w-1/3 min-w-[300px] border-r border-apple-grey">
       <div className="mx-3 mt-3 flex flex-col gap-1">
         <div className="mb-3 flex h-7 items-center rounded-md bg-apple-grey px-2 text-sm text-apple-grey-text">
-          *Icon* Search
+          <AiOutlineSearch className="mr-2" size={15} />
+          Search
         </div>
         <ChatBar
           name="Kush"
@@ -42,6 +44,7 @@ const Chat = () => {
   });
 
   const formRef = useRef(null);
+  const chatRef = useRef();
 
   useEffect(() => {
     if (!formData.name) {
@@ -73,6 +76,12 @@ const Chat = () => {
       ]);
     }
   }, [formData]);
+
+  useEffect(() => {
+    if (chatRef.current) {
+      chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -120,7 +129,10 @@ const Chat = () => {
         <div className="z-30 flex h-10 flex-row items-center bg-[#F7F7F7] px-4 text-sm">
           <a className="mr-1 text-apple-grey-text">To: </a> Kush
         </div>
-        <div className="m-2 mt-auto flex flex-col gap-1 overflow-y-auto overflow-x-hidden">
+        <div
+          ref={chatRef}
+          className="m-2 mt-auto flex flex-col gap-1 overflow-y-auto overflow-x-hidden"
+        >
           {messages &&
             messages?.map((message, index) => (
               <div
