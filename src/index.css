@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --h-menu-bar: 2rem;
+  --h-dock: 4rem;
+}
+
+.bg-img-ventura {
+  background-image: url('./assets/monterey.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+.h-menu-bar {
+  height: var(--h-menu-bar);
+}
+
+.h-dock {
+  height: var(--h-dock);
+}
+
+.h-dragable-area {
+  height: calc(100vh - var(--h-menu-bar) - var(--h-dock));
+}
