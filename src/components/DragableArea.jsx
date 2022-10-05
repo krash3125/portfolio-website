@@ -1,20 +1,27 @@
 import { motion } from 'framer-motion';
-import React, { useRef } from 'react';
-import DragableDiv from './DragableDiv';
-import Index from './iMessage/Index';
+import React, { Fragment } from 'react';
+import { useContext } from 'react';
+import { useRef } from 'react';
+import { WindowManagerContext } from '../context/WindowManager';
+import Messages from './iMessage/iMessages';
 import VSCode from './VSCode';
 
 const DragableArea = () => {
   const constraintsRef = useRef(null);
+  const { windows } = useContext(WindowManagerContext);
+
+  const components = [
+    null,
+    null,
+    <Messages constraintsRef={constraintsRef} />,
+    <VSCode constraintsRef={constraintsRef} />,
+  ];
 
   return (
     <motion.div className="h-dragable-area" ref={constraintsRef}>
-      {/* <DragableDiv
-        className="h-40 w-40 bg-green-500"
-        constraintsRef={constraintsRef}
-      /> */}
-      {/* <Index constraintsRef={constraintsRef} /> */}
-      <VSCode constraintsRef={constraintsRef} />
+      {windows?.map((i) => (
+        <Fragment key={i}>{components[i]}</Fragment>
+      ))}
     </motion.div>
   );
 };

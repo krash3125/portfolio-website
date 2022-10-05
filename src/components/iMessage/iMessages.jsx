@@ -49,8 +49,11 @@ const Chat = () => {
       <div className="m-2 mt-auto flex flex-col gap-1 overflow-y-auto">
         {messages &&
           messages?.map((message, index) => (
-            <div class={`${message.blue ? 'ml-auto' : ''}`}>
-              <Text key={index} message={message.text} blue={message.blue} />
+            <div
+              key={index + 'message'}
+              className={`${message.blue ? 'ml-auto' : ''}`}
+            >
+              <Text message={message.text} blue={message.blue} />
             </div>
           ))}
       </div>
@@ -69,9 +72,13 @@ const Chat = () => {
   );
 };
 
-const Index = ({ constraintsRef }) => {
+const iMessage = ({ constraintsRef }) => {
   return (
-    <ApplicationWrapper title="iMessage" constraintsRef={constraintsRef}>
+    <ApplicationWrapper
+      index={2}
+      title="iMessage"
+      constraintsRef={constraintsRef}
+    >
       <div className="flex h-[500px] w-[700px] flex-row">
         <ChatList />
         <Chat />
@@ -80,4 +87,4 @@ const Index = ({ constraintsRef }) => {
   );
 };
 
-export default Index;
+export default iMessage;
