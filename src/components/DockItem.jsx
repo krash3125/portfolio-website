@@ -8,7 +8,7 @@ const DockItem = ({ index, src }) => {
   return (
     <motion.img
       className="hover:cursor-pointer"
-      whileHover={{ scale: 1.1 }}
+      whileHover={{ scale: 1.2 }}
       src={src}
       onClick={() => openWindow(index)}
     />

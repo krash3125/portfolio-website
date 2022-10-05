@@ -7,6 +7,7 @@ import ChatBar from './ChatBar';
 import './index.css';
 import Text from './Text';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 const ChatList = () => {
   return (
@@ -30,13 +31,79 @@ const ChatList = () => {
 const Chat = () => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([
-    { text: 'Here is a way to contact me.', blue: false },
     { text: 'Send a message here to get in touch!', blue: false },
   ]);
+
+  const [formData, setFormData] = useState({
+    name: null,
+    email: null,
+    message: null,
+  });
+
+  useEffect(() => {
+    if (!formData.name) {
+      setMessages([
+        ...messages,
+        {
+          text: 'Form is starting now (Type RESET to restart form).',
+          blue: false,
+        },
+        { text: 'Start by entering your name...', blue: false },
+      ]);
+    } else if (!formData.email) {
+      setMessages([
+        ...messages,
+        { text: 'Great! Now enter you email address...', blue: false },
+      ]);
+    } else if (!formData.message) {
+      setMessages([
+        ...messages,
+        { text: 'Now finally type your message...', blue: false },
+      ]);
+    } else {
+      setMessages([
+        ...messages,
+        {
+          text: `Send Message? Name: ${formData.name} Email: ${formData.email} Message: ${formData.message} (Type CONFIRM to send.) `,
+          blue: false,
+        },
+      ]);
+    }
+  }, [formData]);
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       setMessages([...messages, { text: input, blue: true }]);
+
+      if (input === 'RESET') {
+        setFormData({
+          name: null,
+          email: null,
+          message: null,
+        });
+      } else if (!formData.name) {
+        setFormData({ ...formData, name: input });
+      } else if (!formData.email) {
+        setFormData({ ...formData, email: input });
+      } else if (!formData.message) {
+        setFormData({ ...formData, message: input });
+      } else if (input === 'CONFIRM') {
+        console.log('send message');
+        console.log(formData);
+        setMessages([
+          ...messages,
+          { text: 'Your message was successfully sent!', blue: false },
+        ]);
+      } else {
+        setMessages([
+          ...messages,
+          {
+            text: `Send Message? Name: ${formData.name} Email: ${formData.email} Message: ${formData.message} (Type CONFIRM to send.) `,
+            blue: false,
+          },
+        ]);
+      }
+
       setInput('');
     }
   };
