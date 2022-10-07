@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { useRef } from 'react';
 import { WindowManagerContext } from '../context/WindowManager';
 import Messages from './iMessage/iMessages';
+import Terminal from './Terminal/Terminal';
 import VSCode from './VSCode';
 
 const DragableArea = () => {
@@ -15,6 +16,8 @@ const DragableArea = () => {
     null,
     <Messages constraintsRef={constraintsRef} />,
     <VSCode constraintsRef={constraintsRef} />,
+    null,
+    <Terminal constraintsRef={constraintsRef} />,
   ];
 
   return (

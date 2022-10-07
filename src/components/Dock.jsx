@@ -3,6 +3,7 @@ import Safari from '../assets/safari.png';
 import iMessage from '../assets/imessage.png';
 import VSCode from '../assets/vscode.png';
 import Github from '../assets/github.png';
+import Terminal from '../assets/terminal.png';
 import DockItem from './DockItem';
 import { useContext } from 'react';
 import { WindowManagerContext } from '../context/WindowManager';
@@ -21,6 +22,7 @@ const Dock = () => {
         index={4}
         onClick={() => window.open('https://github.com/krash3125', '_blank')}
       />
+      <DockItem src={Terminal} index={5} onClick={() => openWindow(5)} />
     </div>
   );
 };

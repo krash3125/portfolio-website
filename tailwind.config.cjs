@@ -12,6 +12,9 @@ module.exports = {
         'apple-red': '#FD5E58',
         'apple-blue': '#007AFF',
       },
+      fontFamily: {
+        code: ['Menlo', 'monospace', 'Lucida Console'],
+      },
     },
   },
   plugins: [],

@@ -1,4 +1,3 @@
-import React from 'react';
 import ApplicationWrapper from './ApplicationWrapper';
 
 const VSCode = ({ constraintsRef }) => {

@@ -32,7 +32,7 @@ const ApplicationControls = ({ index }) => {
 const ApplicationBar = ({ index, title, dragControls }) => {
   return (
     <div
-      className="z-50 flex h-7 items-center bg-white"
+      className="z-50 flex h-7 items-center bg-[#F4F4F4]"
       onMouseDown={(e) => dragControls.start(e)}
     >
       <div className="mx-3 flex w-full items-center gap-4">
@@ -48,7 +48,7 @@ const ApplicationWrapper = ({ index, title, children, constraintsRef }) => {
 
   return (
     <DragableDiv
-      className="application-min-size h-fit w-fit overflow-hidden rounded-md bg-[#C4C4C4]"
+      className="application-min-size h-fit w-fit overflow-hidden rounded-lg bg-[#C4C4C4]"
       constraintsRef={constraintsRef}
       dragControls={dragControls}
       dragListener={false}

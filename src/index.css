@@ -63,3 +63,8 @@ body {
 .application-controls:hover .control-icons {
   display: inline;
 }
+
+.resize-simple {
+  overflow: auto;
+  resize: both;
+}
