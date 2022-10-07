@@ -1,7 +1,7 @@
 import ApplicationWrapper from '../ApplicationWrapper';
 import { FiSmile } from 'react-icons/fi';
 import { AiOutlineSearch } from 'react-icons/ai';
-import Kush from '../../assets/kush.jpeg';
+import Kush from '../../assets/Kush.jpeg';
 import MIT from '../../assets/MIT.png';
 import AppStore from '../../assets/appstore.png';
 import ChatBar from './ChatBar';
