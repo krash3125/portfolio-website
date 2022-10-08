@@ -129,6 +129,10 @@ const Terminal = ({ constraintsRef }) => {
         onClick={() => inputRef.current.focus()}
       >
         <div>Last login: {DATE} on ttys002</div>
+        <div>
+          Run <span className="text-purple-400">help</span> to see a list of
+          commands
+        </div>
         {output.map((text) => text)}
         <div className="flex">
           {CONSOLE_START}
